@@ -1,0 +1,17 @@
+    {% extends "get_data/base.html" %}
+    {% load crispy_forms_tags %}
+
+    {% block content %}
+    <!--p>form here</p-->
+    <form action="checker/" method="post"  >
+        {% csrf_token %}
+         {{form|crispy}}
+         <button type="submit" class="btn btn-success" value="main">SUBMIT</button>
+        {{ ip|safe }}
+<!--        <script>-->
+<!--            var jd = {{ ip|safe }};-->
+<!--        </script>-->
+    </form>
+<!--        <button type="submit" class="btn btn-success" onclick="child_form" > Check Zone </button>-->
+
+    {% endblock content %}

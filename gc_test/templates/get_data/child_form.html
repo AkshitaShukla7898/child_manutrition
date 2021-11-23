@@ -1,0 +1,60 @@
+    {% extends "get_data/base.html" %}
+    {% load crispy_forms_tags %}
+
+    {% block content %}
+    <!--p>form here</p-->
+    <form action="" method="post" id="form"  >
+        <input type="hidden" name="csrfmiddlewaretoken" value="2N18GERNhRs4ORqn29YgIdc2WIxQd4CdnYjgfTWS9fDv2Yii1iPHKbpG90HrSbIr">
+
+
+        <div id="div_id_gender" class="form-group"> <label for="id_gender" class=" requiredField">
+                Gender<span class="asteriskField">*</span> </label> <div class=""> <select name="gender" class="select form-control" required id="id_gender"> <option value="" selected>Select</option> <option value="0">girl</option> <option value="1">boy</option>
+
+        </select> </div> </div> <div id="div_id_dob" class="form-group"> <label for="id_dob" class=" requiredField">
+                Dob<span class="asteriskField">*</span> </label> <div class=""> <input type="date" name="dob" class="dateinput form-control" required id="id_dob"> </div> </div> <div id="div_id_weight" class="form-group"> <label for="id_weight" class=" requiredField">
+                Weight<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="weight" step="any" class="numberinput form-control" required id="id_weight"> </div> </div> <div id="div_id_height" class="form-group"> <label for="id_height" class=" requiredField">
+                Height<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="height" step="any" class="numberinput form-control" required id="id_height"> </div> </div> <div id="div_id_age" class="form-group"> <label for="id_age" class=" requiredField">
+                Age<span class="asteriskField">*</span> </label> <div class=""><label type="number" id="cal_age"></label> <input type="number" name="age" step="any" class="numberinput form-control" required id="id_age"> </div> </div>
+
+
+         <button type="submit" class="btn btn-success" value="main" name="main"> Check Weight Zone </button>
+         <button type="submit" class="btn btn-success" value="btn_height" name="btn_height"> Check Height Zone </button>
+         <button type="submit" class="btn btn-success" value="growth" name="growth_ch"> Growth Checker </button>
+         <button type="submit" class="btn btn-success" value="velocity"  name="velocity"> Growth Velocity </button>
+    </form>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+     </script>
+    <script>
+             $(function(){
+                $("#id_age").hide()
+                $("#id_dob").on('change', function(){
+                 let dob=$(this).val();
+                 var d=new Date(dob);
+                 let today=new Date();
+                 var age = (today-d)/(1000*60*60*24*7)
+                 var week= Math.floor(age)
+                 var days=Math.floor(((today-d)/(1000*60*60*24))%7)
+                 $("#id_age").val(age.toFixed(2))
+                 $("#cal_age").text(week+" week(s) "+days+" days")
+
+                 console.log(dob,today,age);
+                    })
+
+              });
+
+
+             let form = document.getElementById('form');
+             /* let dob = form.elements['id_dob']; */
+
+             /*let v = dob.value();*/
+            /* alert(v)*/
+            /* console.log(dob) */
+            /* console.log(v) */
+             const age = form.elements['id_age']
+            /* age.value = 4 */
+    </script>
+
+
+<!--        <button type="submit" class="btn btn-success" onclick="child_form" > Check Zone </button>-->
+
+    {% endblock content %}
